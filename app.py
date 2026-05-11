@@ -193,6 +193,9 @@ PLAYERS = sorted(set(bat_stats["player"].tolist() + bowl_stats["player"].tolist(
 
 # ── sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
+    col1, col2,  = st.sidebar.columns([1, 2,])
+    with col1:
+        st.image('https://crystalpng.com/wp-content/uploads/2025/09/ipl-logo.png', width=100)
     st.markdown("## 🏏 IPL Dashboard")
     st.markdown("---")
     page = st.radio("Navigate", [
@@ -1375,33 +1378,58 @@ elif page == "🏆 Tournament Insights":
     with tab3:
         st.markdown("### Season-wise Champions")
         wdf = pd.DataFrame([
-            {"Season": 2008, "Champion": "Rajasthan Royals", "Orange Cap Winner": "Shaun Marsh (616)", "Purple Cap Winner": "Sohail Tanvir (22)"},
-            {"Season": 2009, "Champion": "Deccan Chargers", "Orange Cap Winner": "Matthew Hayden (572)", "Purple Cap Winner": "RP Singh (23)"},
-            {"Season": 2010, "Champion": "Chennai Super Kings", "Orange Cap Winner": "Sachin Tendulkar (618)", "Purple Cap Winner": "Pragyan Ojha (21)"},
-            {"Season": 2011, "Champion": "Chennai Super Kings", "Orange Cap Winner": "Chris Gayle (608)", "Purple Cap Winner": "Lasith Malinga (28)"},
-            {"Season": 2012, "Champion": "Kolkata Knight Riders", "Orange Cap Winner": "Chris Gayle (733)", "Purple Cap Winner": "Morne Morkel (25)"},
-            {"Season": 2013, "Champion": "Mumbai Indians", "Orange Cap Winner": "Michael Hussey (733)", "Purple Cap Winner": "Dwayne Bravo (32)"},
-            {"Season": 2014, "Champion": "Kolkata Knight Riders", "Orange Cap Winner": "Robin Uthappa (660)", "Purple Cap Winner": "Mohit Sharma (23)"},
-            {"Season": 2015, "Champion": "Mumbai Indians", "Orange Cap Winner": "David Warner (562)", "Purple Cap Winner": "Dwayne Bravo (26)"},
-            {"Season": 2016, "Champion": "Sunrisers Hyderabad", "Orange Cap Winner": "Virat Kohli (973)", "Purple Cap Winner": "Bhuvneshwar Kumar (23)"},
-            {"Season": 2017, "Champion": "Mumbai Indians", "Orange Cap Winner": "David Warner (641)", "Purple Cap Winner": "Bhuvneshwar Kumar (26)"},
-            {"Season": 2018, "Champion": "Chennai Super Kings", "Orange Cap Winner": "Kane Williamson (735)", "Purple Cap Winner": "Andrew Tye (24)"},
-            {"Season": 2019, "Champion": "Mumbai Indians", "Orange Cap Winner": "David Warner (692)", "Purple Cap Winner": "Imran Tahir (26)"},
-            {"Season": 2020, "Champion": "Mumbai Indians", "Orange Cap Winner": "KL Rahul (670)", "Purple Cap Winner": "Kagiso Rabada (30)"},
-            {"Season": 2021, "Champion": "Chennai Super Kings", "Orange Cap Winner": "Ruturaj Gaikwad (635)", "Purple Cap Winner": "Harshal Patel (32)"},
-            {"Season": 2022, "Champion": "Gujarat Titans", "Orange Cap Winner": "Jos Buttler (863)", "Purple Cap Winner": "Yuzvendra Chahal (27)"},
-            {"Season": 2023, "Champion": "Chennai Super Kings", "Orange Cap Winner": "Shubman Gill (890)", "Purple Cap Winner": "Mohammed Shami (28)"},
-            {"Season": 2024, "Champion": "Kolkata Knight Riders", "Orange Cap Winner": "Virat Kohli (741)", "Purple Cap Winner": "Harshal Patel (24)"},
-            {"Season": 2025, "Champion": "Royal Challengers Bengaluru", "Orange Cap Winner": "Sai Sudharsan (759)", "Purple Cap Winner": "Prasidh Krishna (25)"},
+            {"Season": 2008, "Champion": "Rajasthan Royals",         "Orange Cap": "Shaun Marsh (616)",       "Purple Cap": "Sohail Tanvir (22)",       "Captain": "Shane Warne",      "Player of the Final": "Yusuf Pathan"},
+            {"Season": 2009, "Champion": "Deccan Chargers",          "Orange Cap": "Matthew Hayden (572)",    "Purple Cap": "RP Singh (23)",            "Captain": "Adam Gilchrist",   "Player of the Final": "Anil Kumble"},
+            {"Season": 2010, "Champion": "Chennai Super Kings",      "Orange Cap": "Sachin Tendulkar (618)",  "Purple Cap": "Pragyan Ojha (21)",        "Captain": "MS Dhoni",         "Player of the Final": "Suresh Raina"},
+            {"Season": 2011, "Champion": "Chennai Super Kings",      "Orange Cap": "Chris Gayle (608)",       "Purple Cap": "Lasith Malinga (28)",      "Captain": "MS Dhoni",         "Player of the Final": "Murali Vijay"},
+            {"Season": 2012, "Champion": "Kolkata Knight Riders",    "Orange Cap": "Chris Gayle (733)",       "Purple Cap": "Morne Morkel (25)",        "Captain": "Gautam Gambhir",   "Player of the Final": "Manvinder Bisla"},
+            {"Season": 2013, "Champion": "Mumbai Indians",           "Orange Cap": "Michael Hussey (733)",    "Purple Cap": "Dwayne Bravo (32)",        "Captain": "Rohit Sharma",     "Player of the Final": "Kieron Pollard"},
+            {"Season": 2014, "Champion": "Kolkata Knight Riders",    "Orange Cap": "Robin Uthappa (660)",     "Purple Cap": "Mohit Sharma (23)",        "Captain": "Gautam Gambhir",   "Player of the Final": "Manish Pandey"},
+            {"Season": 2015, "Champion": "Mumbai Indians",           "Orange Cap": "David Warner (562)",      "Purple Cap": "Dwayne Bravo (26)",        "Captain": "Rohit Sharma",     "Player of the Final": "Rohit Sharma"},
+            {"Season": 2016, "Champion": "Sunrisers Hyderabad",      "Orange Cap": "Virat Kohli (973)",       "Purple Cap": "Bhuvneshwar Kumar (23)",   "Captain": "David Warner",     "Player of the Final": "Ben Cutting"},
+            {"Season": 2017, "Champion": "Mumbai Indians",           "Orange Cap": "David Warner (641)",      "Purple Cap": "Bhuvneshwar Kumar (26)",   "Captain": "Rohit Sharma",     "Player of the Final": "Krunal Pandya"},
+            {"Season": 2018, "Champion": "Chennai Super Kings",      "Orange Cap": "Kane Williamson (735)",   "Purple Cap": "Andrew Tye (24)",          "Captain": "MS Dhoni",         "Player of the Final": "Shane Watson"},
+            {"Season": 2019, "Champion": "Mumbai Indians",           "Orange Cap": "David Warner (692)",      "Purple Cap": "Imran Tahir (26)",         "Captain": "Rohit Sharma",     "Player of the Final": "Jasprit Bumrah"},
+            {"Season": 2020, "Champion": "Mumbai Indians",           "Orange Cap": "KL Rahul (670)",          "Purple Cap": "Kagiso Rabada (30)",       "Captain": "Rohit Sharma",     "Player of the Final": "Trent Boult"},
+            {"Season": 2021, "Champion": "Chennai Super Kings",      "Orange Cap": "Ruturaj Gaikwad (635)",   "Purple Cap": "Harshal Patel (32)",       "Captain": "MS Dhoni",         "Player of the Final": "Faf du Plessis"},
+            {"Season": 2022, "Champion": "Gujarat Titans",           "Orange Cap": "Jos Buttler (863)",       "Purple Cap": "Yuzvendra Chahal (27)",    "Captain": "Hardik Pandya",    "Player of the Final": "Hardik Pandya"},
+            {"Season": 2023, "Champion": "Chennai Super Kings",      "Orange Cap": "Shubman Gill (890)",      "Purple Cap": "Mohammed Shami (28)",      "Captain": "MS Dhoni",         "Player of the Final": "Devon Conway"},
+            {"Season": 2024, "Champion": "Kolkata Knight Riders",    "Orange Cap": "Virat Kohli (741)",       "Purple Cap": "Harshal Patel (24)",       "Captain": "Shreyas Iyer",     "Player of the Final": "Mitchell Starc"},
+            {"Season": 2025, "Champion": "Royal Challengers Bengaluru", "Orange Cap": "Sai Sudharsan (759)", "Purple Cap": "Prasidh Krishna (25)",     "Captain": "Rajat Patidar",    "Player of the Final": "Krunal Pandya"},
         ]).sort_values("Season", ascending=False)
         st.dataframe(wdf.set_index("Season"), use_container_width=True)
-
         fig = px.histogram(wdf, x="Champion", color="Champion",
                            title="Championship Count",
                            color_discrete_sequence=PALETTE)
         fig.update_layout(xaxis_title="Team", yaxis_title="Titles")
         dark_fig(fig)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="championship_count_chart")
+
+        st.markdown("### Season-wise Champions")
+        wdf = pd.DataFrame([
+            {"Season": 2008, "Most Fours": "Gautam Gambhir(68)", "Most Sixes": "Sanath Jayasuriya (31)"},
+            {"Season": 2009, "Most Fours": "Matthew Hayden(60)", "Most Sixes": "Adam Gilchrist (29)"},
+            {"Season": 2010, "Most Fours": "Sachin Tendulkar (86)", "Most Sixes": "Robin Uthappa (27)"},
+            {"Season": 2011, "Most Fours": "Sachin Tendulkar (67)", "Most Sixes": "Chris Gayle (44)"},
+            {"Season": 2012, "Most Fours": "Ajinkya Rahane (73)", "Most Sixes": "Chris Gayle (59)"},
+            {"Season": 2013, "Most Fours": "Michael Hussey(81)", "Most Sixes": "Chris Gayle (51)"},
+            {"Season": 2014, "Most Fours": "Robin Uthappa (74)", "Most Sixes": "Glenn Maxwell (36)"},
+            {"Season": 2015, "Most Fours": "David Warner (65)", "Most Sixes": "Chris Gayle (38)"},
+            {"Season": 2016, "Most Fours": "David Warner (88)", "Most Sixes": "Virat Kohli (38)"},
+            {"Season": 2017, "Most Fours": "David Warner (63)", "Most Sixes": "Glenn Maxwell (26)"},
+            {"Season": 2018, "Most Fours": "Rishabh Pant (68)", "Most Sixes": "Rishabh Pant (37)"},
+            {"Season": 2019, "Most Fours": "Shikhar Dhawan (64)", "Most Sixes": "Andre Russell (52)"},
+            {"Season": 2020, "Most Fours": "Shikhar Dhawan(67)", "Most Sixes": "Ishan Kishan (30)"},
+            {"Season": 2021, "Most Fours": "Ruturaj Gaikwad (64)", "Most Sixes": "KL Rahul (30)"},
+            {"Season": 2022, "Most Fours": "Jos Buttler (83)", "Most Sixes": "Jos Buttler (45)"},
+            {"Season": 2023, "Most Fours": "Shubman Gill (85)", "Most Sixes": "Faf du Plessis (36)"},
+            {"Season": 2024, "Most Fours": "Travis Head  (64)", "Most Sixes": "Abhishek Sharma (42)"},
+            {"Season": 2025, "Most Fours": "Sai Sudharsan (88)", "Most Sixes": "Nicholas Pooran (40)"},
+        ]).sort_values("Season", ascending=False)
+        st.dataframe(wdf.set_index("Season"), use_container_width=True)
+
+        
+       
 
 
 # ══════════════════════════════════════════════════════════════════════════════
