@@ -1405,7 +1405,7 @@ elif page == "🏆 Tournament Insights":
         dark_fig(fig)
         st.plotly_chart(fig, use_container_width=True, key="championship_count_chart")
 
-        st.markdown("### Season-wise Champions")
+        st.markdown("### Season-wise Most 4 & 6")
         wdf = pd.DataFrame([
             {"Season": 2008, "Most Fours": "Gautam Gambhir(68)", "Most Sixes": "Sanath Jayasuriya (31)"},
             {"Season": 2009, "Most Fours": "Matthew Hayden(60)", "Most Sixes": "Adam Gilchrist (29)"},
@@ -1445,7 +1445,7 @@ elif page == "🔮 Win Predictor":
 
     model, encoders, metrics, stats_pack, report, feature_cols = train_model_v7()
     
-    st.success("Model trained successfully! 🚀")
+    # st.success("Model trained successfully! ")
     m_col1, m_col2, m_col3, m_col4 = st.columns(4)
     m_col1.metric("Accuracy", f"{metrics['accuracy']*100:.1f}%")
     m_col2.metric("Precision", f"{metrics['precision']*100:.1f}%")
